@@ -52,12 +52,10 @@ exports.exploreCategoriesById = async (req, res) => {
   try {
     let categoryId = req.params.id
     const limitNumber = 20
-    const categoryById = await Recipe.find({ category: categoryId }).limit(
-      limitNumber,
-    )
+    const food = await Recipe.find({ category: categoryId }).limit(limitNumber)
     res.render('categories', {
       title: 'Cooking Blog - Categoreis',
-      categoryById,
+      food,
     })
   } catch (error) {
     res.satus(500).send({ message: error.message || 'Error Occured' })
